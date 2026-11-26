@@ -1,12 +1,10 @@
 import type { Booking, User } from '@prisma/client';
 import type { BookingData } from '../../shared/types.js';
 import { prisma } from '../prisma/index.js';
-import { AppError } from '../../shared/errors/AppError.js';
 
 export class BookingRepository {
   async findById(id: number): Promise<Booking | null> {
-    // TODO: implementar operação de persistência.
-    throw new AppError(501, 'NOT_IMPLEMENTED', 'Operação ainda não implementada.');
+    return prisma.booking.findUnique({ where: { id } });
   }
 
   async findUser(id: number): Promise<User | null> {
@@ -50,12 +48,10 @@ export class BookingRepository {
   }
 
   async update(id: number, data: Omit<BookingData, "userId">): Promise<Booking> {
-    // TODO: implementar operação de persistência.
-    throw new AppError(501, 'NOT_IMPLEMENTED', 'Operação ainda não implementada.');
+    return prisma.booking.update({ where: { id }, data });
   }
 
   async delete(id: number): Promise<void> {
-    // TODO: implementar operação de persistência.
-    throw new AppError(501, 'NOT_IMPLEMENTED', 'Operação ainda não implementada.');
+    await prisma.booking.delete({ where: { id } });
   }
 }

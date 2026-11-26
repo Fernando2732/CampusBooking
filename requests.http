@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3002
-@date = 2026-12-01
+@date = 2026-11-27
 # Substitua date pelo dia principal impresso pelo seed.
 # Execute individualmente. PATCH e DELETE alteram o registro #1.
 # Para recuperar as fixtures, npm run db:seed (apaga dados anteriores).

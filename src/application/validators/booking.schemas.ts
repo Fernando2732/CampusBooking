@@ -17,3 +17,16 @@ export const createBookingSchema = z.object({
   endAt: bookingDateSchema,
   purpose: z.string().trim().min(1).max(200)
 }).strict();
+
+export const updateBookingSchema = createBookingSchema
+  .omit({ userId: true })
+  .partial()
+  .strict()
+  .refine(data => Object.keys(data).length > 0, 'Informe pelo menos um campo para alterar.');
+
+export const bookingParamsSchema = z.object({
+  id: z.string()
+    .regex(/^\d+$/, 'Informe um ID de reserva inteiro positivo.')
+    .transform(Number)
+    .pipe(idSchema)
+});
